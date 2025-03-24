@@ -37,13 +37,13 @@ function processOrder() {
         .then(filterOrders => {
             console.log(filterOrders);
             const deliveryPromiseOrders = filterOrders.map(order => fetchDeliveryInfo(order.id));
-            
-            Promise.all(deliveryPromiseOrders).then((deliveryOrders) => {
-                return deliveryOrders;
-            }).then(deliveryOrders => {
+
+            return Promise.all(deliveryPromiseOrders).then((deliveryOrders) => {
                 console.log(deliveryOrders)
+                return deliveryOrders;
             });
         }).catch(err => console.log(err))
 }
 
 processOrder();
+
